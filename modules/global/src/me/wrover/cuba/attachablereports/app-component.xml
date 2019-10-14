@@ -3,21 +3,22 @@
                dependsOn="de.diedavids.cuba.entitysoftreference, de.balvi.cuba.declarativecontrollers, com.haulmont.reports, com.haulmont.cuba">
 
     <module name="global" blocks="*">
-        <artifact name="rwattreps-global" appJar="true"/>
+        <artifact name="mwattreps-global" appJar="true"/>
 
         <property name="cuba.persistenceConfig" value="+me/wrover/cuba/attachablereports/persistence.xml"/>
         <property name="cuba.metadataConfig" value="+me/wrover/cuba/attachablereports/metadata.xml"/>
         <property name="cuba.viewsConfig" value="+me/wrover/cuba/attachablereports/views.xml"/>
     </module>
     <module name="core" dependsOn="global" blocks="core">
-        <artifact name="rwattreps-core" appJar="true"/>
+        <artifact name="mwattreps-core" appJar="true"/>
+        <artifact name="mwattreps-core" classifier="db" ext="zip" configuration="dbscripts"/>
 
         <property name="cuba.springContextConfig" value="+me/wrover/cuba/attachablereports/spring.xml"/>
         <property name="cuba.mainMessagePack" value="+me.wrover.cuba.attachablereports.core"/>
     </module>
     <module name="web" dependsOn="global" blocks="web">
-        <artifact name="rwattreps-web" appJar="true"/>
-        <artifact name="rwattreps-web" classifier="web" ext="zip" configuration="webcontent"/>
+        <artifact name="mwattreps-web" appJar="true"/>
+        <artifact name="mwattreps-web" classifier="web" ext="zip" configuration="webcontent"/>
 
         <property name="cuba.springContextConfig" value="+me/wrover/cuba/attachablereports/web-spring.xml"/>
         <property name="cuba.dispatcherSpringContextConfig"

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <metadata xmlns="http://schemas.haulmont.com/cuba/metadata.xsd">
-
-    <metadata-model root-package="me.wrover.cuba.attachablereports" namespace="attachablereports"/>
-
+    <datatypes>
+        <datatype
+                id="ValueObjectDataType"
+                class="me.wrover.cuba.attachablereports.utils.ValueObjectDatatype"
+                javaType="com.haulmont.cuba.core.entity.EmbeddableEntity"
+                sqlType="varchar(4096)"/>
+    </datatypes>
+    <metadata-model root-package="me.wrover.cuba.attachablereports" namespace="attachablereports">
+        <class>me.wrover.cuba.attachablereports.domain.example.CompositeId</class>
+    </metadata-model>
 </metadata>

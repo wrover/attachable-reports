@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <screen-config xmlns="http://schemas.haulmont.com/cuba/screens.xsd">
-
+    <!-- attachment types editor -->
+    <screen id="mwattreps$AttachmentType.browse"
+            template="/me/wrover/cuba/attachablereports/web/screen/attachmenttype/attachment-type-browse.xml"/>
+    <!-- an attachment list, actually almost empty window, which delegates all work to frames-->
+    <screen id="mwattreps$Attachment.browse"
+            template="/me/wrover/cuba/attachablereports/web/screen/attachment/attachment-browse.xml"/>
+    <!-- frames -->
+    <screen id="mwattreps$attachmentBrowseFrame"
+            template="/me/wrover/cuba/attachablereports/web/screen/attachment/attachment-browse-frame.xml"/>
+    <screen id="mwattreps$reportBrowseFrame"
+            template="/me/wrover/cuba/attachablereports/web/screen/attachment/report-browse-frame.xml"/>
+    <!-- used to upload new attachments -->
+    <screen id="mwattreps$Attachment.edit"
+            template="/me/wrover/cuba/attachablereports/web/screen/attachment/attachment-upload.xml"/>
+    <!-- a preview window -->
+    <screen id="mwattreps$Attachment.preview"
+            template="/me/wrover/cuba/attachablereports/web/screen/attachment/attachment-preview.xml"/>
 </screen-config>

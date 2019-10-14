@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
-    <menu id="application-attachablereports" insertBefore="administration">
+    <menu id="application-attachablereports" insertBefore="reports">
+        <item screen="mwattreps$AttachmentType.browse"/>
+        <item screen="mwattreps$SampleEntity.browse"/>
     </menu>
 </menu-config>

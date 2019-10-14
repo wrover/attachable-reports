@@ -10,7 +10,7 @@
         <param-value>
             classpath:me/wrover/cuba/attachablereports/web-app.properties
             /WEB-INF/local.app.properties
-            "file:${catalina.base}/conf/rwattreps/local.app.properties"
+            "file:${catalina.base}/conf/mwattreps/local.app.properties"
         </param-value>
     </context-param>
     <!--Application components-->

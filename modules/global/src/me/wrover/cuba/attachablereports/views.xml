@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
-
+    <view class="me.wrover.cuba.attachablereports.domain.Attachment"
+          extends="_local"
+          name="attachment-view">
+        <property name="type"
+                  view="_minimal"/>
+        <property name="report"
+                  view="_minimal"/>
+        <property name="file"
+                  view="_minimal"/>
+    </view>
 </views>

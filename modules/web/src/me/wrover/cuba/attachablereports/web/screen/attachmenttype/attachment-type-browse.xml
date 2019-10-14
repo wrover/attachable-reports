@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://caption"
+        class="me.wrover.cuba.attachablereports.web.screen.attachmenttype.AttachmentTypeBrowse"
+        focusComponent="table"
+        lookupComponent="table"
+        messagesPack="me.wrover.cuba.attachablereports.web.screen.attachmenttype">
+    <dsContext>
+        <datasource id="attachmentTypeDs"
+                    class="me.wrover.cuba.attachablereports.domain.AttachmentType"
+                    view="_local"/>
+        <groupDatasource id="attachmentTypesDs"
+                         class="me.wrover.cuba.attachablereports.domain.AttachmentType"
+                         view="_local">
+            <query>
+                <![CDATA[select e from mwattreps$AttachmentType e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <actions>
+        <action id="save"
+                caption="mainMsg://actions.Ok"
+                icon="icons/ok.png"
+                invoke="save"
+                shortcut="CTRL-ENTER"/>
+        <action id="cancel"
+                caption="mainMsg://actions.Cancel"
+                description="Esc"
+                icon="icons/cancel.png"
+                invoke="cancel"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout>
+        <split id="split"
+               height="100%"
+               orientation="horizontal"
+               reversePosition="true"
+               width="100%">
+            <vbox id="lookupBox"
+                  expand="table"
+                  height="100%"
+                  margin="false,true,false,false"
+                  spacing="true">
+                <filter id="filter"
+                        applyTo="table"
+                        datasource="attachmentTypesDs">
+                    <properties include=".*"/>
+                </filter>
+                <groupTable id="table"
+                            width="100%">
+                    <actions>
+                        <action id="create"/>
+                        <action id="edit"/>
+                        <action id="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="targetMetaClass"/>
+                        <column id="entityCaption" caption="msg://entityCaption" generator="entityCaptionGenerator"/>
+                        <column id="name"/>
+                    </columns>
+                    <rows datasource="attachmentTypesDs"/>
+                    <rowsCount/>
+                    <buttonsPanel id="buttonsPanel"
+                                  alwaysVisible="true">
+                        <button id="createBtn"
+                                action="table.create"/>
+                        <button id="editBtn"
+                                action="table.edit"/>
+                        <button id="removeBtn"
+                                action="table.remove"/>
+                    </buttonsPanel>
+                </groupTable>
+            </vbox>
+            <vbox id="editBox"
+                  expand="fieldGroupBox"
+                  height="100%"
+                  margin="false,false,false,true"
+                  spacing="true">
+                <scrollBox id="fieldGroupBox">
+                    <fieldGroup id="fieldGroup"
+                                datasource="attachmentTypeDs">
+                        <column width="250px">
+                            <field property="name"/>
+                            <field property="targetMetaClass">
+                                <lookupField id="lookupField"
+                                             datasource="attachmentTypeDs"
+                                             property="targetMetaClass"/>
+                            </field>
+                        </column>
+                    </fieldGroup>
+                </scrollBox>
+                <hbox id="actionsPane"
+                      spacing="true"
+                      visible="false">
+                    <button id="saveBtn"
+                            action="save"/>
+                    <button id="cancelBtn"
+                            action="cancel"/>
+                </hbox>
+            </vbox>
+        </split>
+    </layout>
+</window>

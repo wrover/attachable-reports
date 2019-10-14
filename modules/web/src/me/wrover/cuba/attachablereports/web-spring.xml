@@ -6,6 +6,19 @@
     <!-- Annotation-based beans -->
     <context:component-scan base-package="me.wrover.cuba.attachablereports"/>
     
-    <gui:screens base-packages="me.wrover.cuba.attachablereports.web"/>
+    <gui:screens base-packages="me.wrover.cuba.attachablereports.web.screen"/>
 
+    <bean id="attachablereports_proxyCreator" class="com.haulmont.cuba.web.sys.remoting.WebRemoteProxyBeanCreator">
+        <property name="serverSelector" ref="cuba_ServerSelector"/>
+        <property name="remoteServices">
+            <map>
+                <entry key="mwattreps_AttachableReportsService"
+                       value="me.wrover.cuba.attachablereports.service.AttachableReportsService"/>
+            </map>
+        </property>
+    </bean>
+
+    <!-- Custom report manager -->
+    <bean id="cuba_ReportGuiManager"
+          class="me.wrover.cuba.attachablereports.web.bean.CustomReportGuiManager"/>
 </beans>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="me.wrover.cuba.attachablereports.web.screen.attachment.AttachmentBrowse"
+        focusComponent="browseFrame.attachmentsTable"
+        lookupComponent="browseFrame.attachmentsTable"
+        messagesPack="me.wrover.cuba.attachablereports.web.screen.attachment">
+    <dialogMode height="theme://cuba.gui.dialogSize.height.xlarge"
+                width="theme://cuba.gui.dialogSize.width.xlarge"
+                resizable="true"/>
+    <layout spacing="true" expand="container">
+        <vbox id="container" width="100%"/>
+    </layout>
+</window>

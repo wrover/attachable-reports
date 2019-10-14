@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="me.wrover.cuba.attachablereports.web.screen.attachment.AttachmentUniFrame"
+        messagesPack="me.wrover.cuba.attachablereports.web.screen.attachment">
+    <dsContext>
+        <groupDatasource id="attachmentsDs"
+                         class="me.wrover.cuba.attachablereports.domain.Attachment"
+                         datasourceClass="me.wrover.cuba.attachablereports.web.screen.attachment.AttachmentsDatasource">
+        </groupDatasource>
+    </dsContext>
+    <layout expand="attachmentsTable"
+            spacing="true"
+            height="100%">
+        <groupTable id="attachmentsTable"
+                    presentations="false"
+                    settingsEnabled="false"
+                    columnControlVisible="false"
+                    width="100%">
+            <actions>
+                <action id="refresh"/>
+                <action id="create" openType="DIALOG"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="type"/>
+                <column id="file.name"
+                        link="true"
+                        linkInvoke="previewFile"/>
+                <column id="createdBy"/>
+                <column id="createTs"/>
+            </columns>
+            <rows datasource="attachmentsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="refreshBtn"
+                        action="attachmentsTable.refresh"/>
+                <button id="createBtn"
+                        action="attachmentsTable.create"/>
+                <button id="previewBtn"
+                        action="attachmentsTable.preview"/>
+                <button id="downloadBtn"
+                        action="attachmentsTable.download"/>
+                <button id="removeBtn"
+                        action="attachmentsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="me.wrover.cuba.attachablereports.web.screen.attachment.AttachmentUpload"
+        datasource="attachmentDs"
+        focusComponent="fieldGroup"
+        messagesPack="me.wrover.cuba.attachablereports.web.screen.attachment">
+    <dsContext>
+        <datasource id="attachmentDs"
+                    class="me.wrover.cuba.attachablereports.domain.Attachment"
+                    view="attachment-view"/>
+        <collectionDatasource id="attachmentTypesDs"
+                              allowCommit="false"
+                              class="me.wrover.cuba.attachablereports.domain.AttachmentType"
+                              view="_local">
+            <query>
+                <![CDATA[select e from mwattreps$AttachmentType e]]>
+                <filter>
+                    <or>
+                        <c>e.targetMetaClass = :custom$metaClassName</c>
+                        <c>e.targetMetaClass is null</c>
+                    </or>
+                </filter>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="AUTO"
+                width="AUTO"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="attachmentDs">
+            <column width="400px">
+                <field property="type" optionsDatasource="attachmentTypesDs" required="true"/>
+                <field property="file" required="true"/>
+                <field property="name" visible="false"/> <!-- needed by AttachmentNameExtractor -->
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>
