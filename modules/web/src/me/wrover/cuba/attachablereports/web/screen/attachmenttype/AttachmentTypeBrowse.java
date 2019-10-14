@@ -23,7 +23,7 @@ public class AttachmentTypeBrowse extends EntityCombinedScreen {
     private Metadata metadata;
 
     @Inject
-    private LookupField lookupField;
+    private LookupField<String> lookupField;
 
     @Inject
     private Datasource<AttachmentType> attachmentTypeDs;
