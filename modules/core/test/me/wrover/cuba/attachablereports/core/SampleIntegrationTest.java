@@ -1,6 +1,5 @@
 package me.wrover.cuba.attachablereports.core;
 
-import me.wrover.cuba.attachablereports.AttachablereportsTestContainer;
 import com.haulmont.cuba.core.EntityManager;
 import com.haulmont.cuba.core.Persistence;
 import com.haulmont.cuba.core.Transaction;
@@ -9,15 +8,14 @@ import com.haulmont.cuba.core.global.AppBeans;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.Metadata;
 import com.haulmont.cuba.security.entity.User;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.ClassRule;
-import org.junit.Test;
+import me.wrover.cuba.attachablereports.AttachablereportsTestContainer;
+import org.junit.*;
 
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+@Ignore
 public class SampleIntegrationTest {
 
     @ClassRule
