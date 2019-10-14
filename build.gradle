@@ -13,6 +13,7 @@ buildscript {
     }
     dependencies {
         classpath "com.haulmont.gradle:cuba-plugin:$cubaVersion"
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4"
     }
 }
 
@@ -30,7 +31,7 @@ cuba {
     artifact {
         group = 'me.wrover.cuba.attachablereports'
         version = '0.1'
-        isSnapshot = true
+        isSnapshot = false
     }
     tomcat {
         dir = "$project.rootDir/deploy/tomcat"
@@ -199,6 +200,34 @@ task restart(dependsOn: ['stop', ":${modulePrefix}-core:deploy", ":${modulePrefi
             }
         }
         start.execute()
+    }
+}
+
+subprojects {
+    apply plugin: 'com.jfrog.bintray'
+
+    bintray {
+        user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+        key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+
+        configurations = ['archives']
+
+        // make files public ?
+        publish = true
+        // override existing artifacts?
+        override = false
+
+        // metadata
+        pkg {
+            repo = 'cuba-platform'
+            name = 'attachable-reports'
+
+            websiteUrl = 'https://github.com/wrover/attachable-reports'
+            issueTrackerUrl = 'https://github.com/wrover/attachable-reports/issues'
+            vcsUrl = 'https://github.com/wrover/attachable-reports.git' // Mandatory for Open Source projects
+            licenses = ["Apache-2.0"]
+            labels = ['cuba', 'cuba-platform', 'cuba-component']
+        }
     }
 }
 

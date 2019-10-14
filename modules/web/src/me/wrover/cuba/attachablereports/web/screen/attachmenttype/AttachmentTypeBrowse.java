@@ -1,5 +1,6 @@
 package me.wrover.cuba.attachablereports.web.screen.attachmenttype;
 
+import com.haulmont.chile.core.model.MetaClass;
 import com.haulmont.chile.core.model.MetadataObject;
 import com.haulmont.cuba.core.global.Metadata;
 import com.haulmont.cuba.gui.components.Component;
@@ -60,11 +61,20 @@ public class AttachmentTypeBrowse extends EntityCombinedScreen {
     }
 
     public Component entityCaptionGenerator(AttachmentType entity) {
-        Label caption = componentsFactory.createComponent(Label.class);
-        if (entity.getTargetMetaClass() != null)
-            caption.setValue(messages.getTools().getEntityCaption(metadata.getClass(entity.getTargetMetaClass())));
-        else
+        @SuppressWarnings("unchecked")
+        Label<String> caption = (Label<String>) componentsFactory.createComponent(Label.class);
+
+        final String metaClassName = entity.getTargetMetaClass();
+        if (metaClassName != null) {
+            final MetaClass metaClass = metadata.getClass(metaClassName);
+            if (metaClass != null)
+                caption.setValue(messages.getTools().getEntityCaption(metaClass));
+            else
+                caption.setValue(getMessage("unknownMetaClass"));
+        } else {
             caption.setValue(getMessage("allTypes"));
+        }
+
         return caption;
     }
 }
