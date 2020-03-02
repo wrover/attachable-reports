@@ -30,7 +30,7 @@ apply(plugin: 'cuba')
 cuba {
     artifact {
         group = 'me.wrover.cuba.attachablereports'
-        version = '0.1'
+        version = '0.1.1'
         isSnapshot = false
     }
     tomcat {

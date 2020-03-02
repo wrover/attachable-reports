@@ -3,13 +3,14 @@ package me.wrover.cuba.attachablereports.web.screen.attachmenttype;
 import com.haulmont.chile.core.model.MetaClass;
 import com.haulmont.chile.core.model.MetadataObject;
 import com.haulmont.cuba.core.global.Metadata;
+import com.haulmont.cuba.gui.UiComponents;
 import com.haulmont.cuba.gui.components.Component;
 import com.haulmont.cuba.gui.components.EntityCombinedScreen;
 import com.haulmont.cuba.gui.components.Label;
 import com.haulmont.cuba.gui.components.LookupField;
 import com.haulmont.cuba.gui.data.Datasource;
+import com.haulmont.cuba.gui.screen.MessageBundle;
 import com.haulmont.cuba.gui.sys.AttributeAccessSupport;
-import com.haulmont.cuba.gui.xml.layout.ComponentsFactory;
 import me.wrover.cuba.attachablereports.domain.AttachmentType;
 
 import javax.inject.Inject;
@@ -29,10 +30,13 @@ public class AttachmentTypeBrowse extends EntityCombinedScreen {
     private Datasource<AttachmentType> attachmentTypeDs;
 
     @Inject
-    private ComponentsFactory componentsFactory;
+    private UiComponents uiComponents;
 
     @Inject
     private AttributeAccessSupport attributeAccessSupport;
+
+    @Inject
+    private MessageBundle messageBundle;
 
     @Override
     public void init(Map<String, Object> params) {
@@ -53,7 +57,7 @@ public class AttachmentTypeBrowse extends EntityCombinedScreen {
                 metadata.getTools().getAllPersistentMetaClasses()
                         .stream()
                         .collect(toMap(
-                                messages.getTools()::getEntityCaption,
+                                MetadataObject::getName,
                                 MetadataObject::getName
                                 )
                         )
@@ -61,20 +65,20 @@ public class AttachmentTypeBrowse extends EntityCombinedScreen {
     }
 
     public Component entityCaptionGenerator(AttachmentType entity) {
-        @SuppressWarnings("unchecked")
-        Label<String> caption = (Label<String>) componentsFactory.createComponent(Label.class);
+        final Label<String> label = uiComponents.create(Label.TYPE_DEFAULT);
 
         final String metaClassName = entity.getTargetMetaClass();
         if (metaClassName != null) {
             final MetaClass metaClass = metadata.getClass(metaClassName);
             if (metaClass != null)
-                caption.setValue(messages.getTools().getEntityCaption(metaClass));
+                label.setValue(messages.getTools().getEntityCaption(metaClass));
             else
-                caption.setValue(getMessage("unknownMetaClass"));
+                label.setValue(messageBundle.getMessage("unknownMetaClass"));
         } else {
-            caption.setValue(getMessage("allTypes"));
+            label.setValue(messageBundle.getMessage("allTypes"));
         }
 
-        return caption;
+
+        return label;
     }
 }
